@@ -3,16 +3,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>org.dbunit</groupId>
+    <artifactId>dbunit-parent</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../dbunit-parent</relativePath>
   </parent>
 
-  <groupId>org.dbunit</groupId>
   <artifactId>dbunit</artifactId>
   <version>2.5.4-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>dbUnit Extension</name>
+  <name>dbUnit Framework</name>
   <url>http://dbunit.sourceforge.net</url>
   <inceptionYear>2002</inceptionYear>
   <description>
@@ -27,46 +27,8 @@
   </licenses>
 
   <properties>
-    <!-- Maven configuration -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <project.scm.id>sourceforge</project.scm.id>
-
     <!-- General values -->
-    <compileSource>1.5</compileSource>
     <checkstyle.excludes>org/dbunit/util/concurrent/*.java</checkstyle.excludes>
-    <mavenVersion>3.0.4</mavenVersion>
-
-    <!-- Maven plugin versions -->
-    <assemblyPluginVersion>2.6</assemblyPluginVersion>
-    <changelogPluginVersion>2.3</changelogPluginVersion>
-    <changesPluginVersion>2.12</changesPluginVersion>
-    <checkstylePluginVersion>2.17</checkstylePluginVersion>
-    <cleanPluginVersion>3.0.0</cleanPluginVersion>
-    <coberturaPluginVersion>2.7</coberturaPluginVersion>
-    <compilerPluginVersion>3.5.1</compilerPluginVersion>
-    <deployPluginVersion>2.8.2</deployPluginVersion>
-    <enforcerPluginVersion>1.4.1</enforcerPluginVersion>
-    <failsafePluginVersion>2.19.1</failsafePluginVersion>
-    <gpgPluginVersion>1.6</gpgPluginVersion>
-    <installPluginVersion>2.5.2</installPluginVersion>
-    <jarPluginVersion>3.0.0</jarPluginVersion>
-    <javadocPluginVersion>2.10.3</javadocPluginVersion>
-    <jdependPluginVersion>2.0</jdependPluginVersion>
-    <jxrPluginVersion>2.5</jxrPluginVersion>
-    <pmdPluginVersion>3.6</pmdPluginVersion>
-    <projectInfoReportsPluginVersion>2.9</projectInfoReportsPluginVersion>
-    <releasePluginVersion>2.5.3</releasePluginVersion>
-    <resourcesPluginVersion>3.0.0</resourcesPluginVersion>
-    <sitePluginVersion>3.5.1</sitePluginVersion>
-    <sqlPluginVersion>1.5</sqlPluginVersion>
-    <surefirePluginVersion>2.19.1</surefirePluginVersion>
-
-    <!-- Framework versions --> 
-    <junitVersion>4.12</junitVersion>
-    <hamcrestVersion>1.3</hamcrestVersion>
-    <logbackVersion>1.1.7</logbackVersion>
-    <slf4jVersion>1.7.21</slf4jVersion>
 
     <!-- Database driver versions --> 
     <derbyDriverVersion>10.4.1.3</derbyDriverVersion>
@@ -78,51 +40,16 @@
     <postgresqlDriverVersion>8.4-701.jdbc3</postgresqlDriverVersion>
     <sqlServer41DriverVersion>4.1.0</sqlServer41DriverVersion>
 
-    <!-- Other versions --> 
-    <wagonSshVersion>2.10</wagonSshVersion>
+    <!-- framework version -->
+    <antTestUtilVersion>1.7.0</antTestUtilVersion>
+    <commonsIoVersion>2.5</commonsIoVersion>
+    <gsbaseVersion>2.0.1</gsbaseVersion>
+    <junitAddonsVersion>1.4</junitAddonsVersion>
+    <mockMakerVersion>1.12.0</mockMakerVersion>
+    <mockObjectsVersion>0.09</mockObjectsVersion>
+    <poiVersion>3.14</poiVersion>
+    <xercesParserApis>2.6.2</xercesParserApis>
   </properties>
-
-  <prerequisites>
-    <maven>${mavenVersion}</maven>
-  </prerequisites>
-
-  <scm>
-    <connection>scm:git:http://git.code.sf.net/p/dbunit/code.git</connection>
-    <developerConnection>scm:git:https://git.code.sf.net/p/dbunit/code.git</developerConnection>
-    <url>http://sourceforge.net/p/dbunit/code.git/ci/master/tree/</url>
-    <tag>HEAD</tag>
-  </scm>
-  <issueManagement>
-    <system>SourceForge</system>
-    <!-- old: <url>http://sourceforge.net/tracker/?group_id=47439</url> -->
-    <url>http://sourceforge.net/p/dbunit/bugs/</url>
-    <!-- features; how to have both? <url>http://sourceforge.net/p/dbunit/feature-requests/</url> -->
-  </issueManagement>
-  <ciManagement>
-    <system>jenkins</system>
-    <url>http://dbunit.intertech.com/jenkins/</url>
-  </ciManagement>
-
-  <mailingLists>
-    <mailingList>
-      <name>dbUnit User List</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-user</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-user</unsubscribe>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=dbunit-user</archive>
-    </mailingList>
-    <mailingList>
-      <name>dbUnit Developer List</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-developer</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-developer</unsubscribe>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=dbunit-developer</archive>
-    </mailingList>
-    <mailingList>
-      <name>dbUnit Commit List</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-commit</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/dbunit-commit</unsubscribe>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=dbunit-commit</archive>
-    </mailingList>
-  </mailingLists>
 
   <!--
      - Who are the developers for the project, in order of recent activity.
@@ -132,11 +59,20 @@
        - Note: email of first developer is used by the announcements-email plugin
       -->
     <developer>
+      <name>Jeff Jensen</name>
+      <id>jeffjensen</id>
+      <email>jeffjensen@users.sourceforge.net</email>
+      <roles>
+        <role>Java Developer (active)</role>
+      </roles>
+      <timezone>-6</timezone>
+    </developer>
+    <developer>
       <name>Matthias Gommeringer</name>
       <id>gommma</id>
       <email>gommma@users.sourceforge.net</email>
       <roles>
-        <role>Java Developer (very active)</role>
+        <role>Java Developer (inactive)</role>
       </roles>
     </developer>
     <developer>
@@ -144,15 +80,7 @@
       <id>jbhurst</id>
       <email>jbhurst@users.sourceforge.net</email>
       <roles>
-        <role>Java Developer (very active)</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>Jeff Jensen</name>
-      <id>jeffjensen</id>
-      <email>jeffjensen@users.sourceforge.net</email>
-      <roles>
-        <role>Java Developer (active)</role>
+        <role>Java Developer (inactive)</role>
       </roles>
     </developer>
     <developer>
@@ -161,7 +89,7 @@
       <email>rlogiacco@users.sourceforge.net</email>
       <organization>SmartLab</organization>
       <roles>
-        <role>Java Developer (active)</role>
+        <role>Java Developer (inactive)</role>
       </roles>
     </developer>
     <developer>
@@ -171,7 +99,7 @@
       <organization>GoldenGate Software</organization>
       <timezone>-8</timezone>
       <roles>
-        <role>Java Developer (mostly inactive :-)</role>
+        <role>Java Developer (inactive)</role>
       </roles>
     </developer>
     <developer>
@@ -271,9 +199,7 @@
     </contributor>
   </contributors>
 
-
   <dependencies>
-
     <!--
       TODO: check which dependencies could marked as optional. For
       instance, ant is optional because it's only necessary for the
@@ -287,21 +213,25 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${slf4jVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
-      <version>${slf4jVersion}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>${logbackVersion}</version>
-      <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
@@ -309,31 +239,18 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junitVersion}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>${hamcrestVersion}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
-      <version>3.2.2</version>
     </dependency>
     <dependency>
       <groupId>ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.6.5</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
-      <version>3.14</version>
+      <version>${poiVersion}</version>
       <exclusions>
         <exclusion>
           <artifactId>log4j</artifactId>
@@ -349,64 +266,64 @@
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
-      <version>3.14</version>
+      <version>${poiVersion}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant-testutil</artifactId>
-      <version>1.7.0</version>
+      <version>${antTestUtilVersion}</version>
       <optional>true</optional>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit-addons</groupId>
       <artifactId>junit-addons</artifactId>
-      <version>1.4</version>
+      <version>${junitAddonsVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>mockobjects</groupId>
       <artifactId>mockobjects-core</artifactId>
-      <version>0.09</version>
+      <version>${mockObjectsVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>mockmaker</groupId>
       <artifactId>mmmockobjects</artifactId>
-      <version>1.12.0</version>
+      <version>${mockMakerVersion}</version>
       <scope>test</scope>
     </dependency>
     <!-- TODO: check why follow dependency is necessary -->
     <dependency>
       <groupId>mockobjects</groupId>
       <artifactId>mockobjects-jdk1.3</artifactId>
-      <version>0.09</version>
+      <version>${mockObjectsVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.1.113</version>
+      <version>${h2DriverVersion}</version>
       <!-- Note that the 1.1.113 version is the last one officially built with JDK 1.4 -->
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>gsbase</groupId>
       <artifactId>gsbase</artifactId>
-      <version>2.0.1</version>
+      <version>${gsbaseVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.5</version>
+      <version>${commonsIoVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>xerces</groupId>
       <artifactId>xmlParserAPIs</artifactId>
-      <version>2.6.2</version>
+      <version>${xercesParserApis}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -847,41 +764,8 @@ org.apache.tools.ant.util.FileUtils.getFileUtils()Lorg/apache/tools/ant/util/Fil
           </tags>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changes-plugin</artifactId>
-        <version>2.12</version>
-        <configuration>
-          <smtpHost>localhost</smtpHost>
-          <smtpPort implementation="java.lang.Integer">25</smtpPort>
-          <introduction>If you are reading this, the maintainer forgot to describe what's the purpose of this release!!!</introduction>
-          <toAddresses>
-            <toAddress implementation="java.lang.String">dbunit-developer@lists.sourceforge.net</toAddress>
-            <toAddress implementation="java.lang.String">dbunit-user@lists.sourceforge.net</toAddress>
-          </toAddresses>
-          <urlDownload>http://dbunit.sourceforge.net/repos.html</urlDownload>
-          <issueLinkTemplatePerSystem>
-            <sourceforge><![CDATA[https://sourceforge.net/p/dbunit/bugs/%ISSUE%]]></sourceforge>
-          </issueLinkTemplatePerSystem>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>changes-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
     </plugins>
   </reporting>
-
-  <distributionManagement>
-    <!-- distribution repos specified in parent -->
-    <site>
-      <id>sourceforge</id>
-      <url>scp://shell.sourceforge.net/home/project-web/dbunit/htdocs</url>
-    </site>
-  </distributionManagement>
 
   <profiles>
     <profile>
