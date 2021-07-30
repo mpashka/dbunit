@@ -28,8 +28,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetTest;
 
 public class TableDecoratorDataSetTest extends AbstractDataSetDecoratorTest
 {
-
-    public TableDecoratorDataSetTest(String s)
+    public TableDecoratorDataSetTest(final String s)
     {
         super(s);
     }
@@ -38,27 +37,35 @@ public class TableDecoratorDataSetTest extends AbstractDataSetDecoratorTest
     protected IDataSet createDataSet() throws Exception
     {
         return new TableDecoratorDataSet(
-                new FlatXmlDataSetBuilder().build(new FileReader(FlatXmlDataSetTest.DATASET_FILE)),
+                new FlatXmlDataSetBuilder()
+                        .build(new FileReader(FlatXmlDataSetTest.DATASET_FILE)),
                 t -> new ColumnFilterTable(t, (table, column) -> true));
     }
-    
+
     public void testTableDecoration() throws Exception
     {
-        IDataSet dataset = createDataSet();
-        
-        assertTrue("should be a ColumnFilterTable", dataset.getTable("TEST_TABLE") instanceof ColumnFilterTable);
-        assertTrue("should be a FilteredTableMetaData", dataset.getTableMetaData("TEST_TABLE") instanceof FilteredTableMetaData);
-        assertTrue("should be a ColumnFilterTable", dataset.getTables()[0] instanceof ColumnFilterTable);
-        
+        final IDataSet dataset = createDataSet();
+
+        assertTrue("should be a ColumnFilterTable",
+                dataset.getTable("TEST_TABLE") instanceof ColumnFilterTable);
+        assertTrue("should be a FilteredTableMetaData",
+                dataset.getTableMetaData(
+                        "TEST_TABLE") instanceof FilteredTableMetaData);
+        assertTrue("should be a ColumnFilterTable",
+                dataset.getTables()[0] instanceof ColumnFilterTable);
+
         ITableIterator iterator = dataset.iterator();
         iterator.next();
-        assertTrue("should be a ColumnFilterTable", iterator.getTable() instanceof ColumnFilterTable);
-        assertTrue("should be a FilteredTableMetaData", iterator.getTableMetaData() instanceof FilteredTableMetaData);
-        
+        assertTrue("should be a ColumnFilterTable",
+                iterator.getTable() instanceof ColumnFilterTable);
+        assertTrue("should be a FilteredTableMetaData",
+                iterator.getTableMetaData() instanceof FilteredTableMetaData);
+
         iterator = dataset.reverseIterator();
         iterator.next();
-        assertTrue("should be a ColumnFilterTable", iterator.getTable() instanceof ColumnFilterTable);
-        assertTrue("should be a FilteredTableMetaData", iterator.getTableMetaData() instanceof FilteredTableMetaData);
+        assertTrue("should be a ColumnFilterTable",
+                iterator.getTable() instanceof ColumnFilterTable);
+        assertTrue("should be a FilteredTableMetaData",
+                iterator.getTableMetaData() instanceof FilteredTableMetaData);
     }
-
 }

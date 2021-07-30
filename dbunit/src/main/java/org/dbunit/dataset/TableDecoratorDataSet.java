@@ -22,38 +22,41 @@
 package org.dbunit.dataset;
 
 /**
- * Decorates a dataset to allow decorating the returned {@link ITable}s (and {@link ITableMetaData}s, by extension).
- * Intended to be used for things like filtering out columns.
- * Do not use this to filter out entire tables; use {@link FilteredDataSet} for that.
- * 
+ * Decorates a dataset to allow decorating the returned {@link ITable}s (and
+ * {@link ITableMetaData}s, by extension). Intended to be used for things like
+ * filtering out columns. Do not use this to filter out entire tables; use
+ * {@link FilteredDataSet} for that.
+ *
  * @see ColumnFilterTable
- * 
+ *
  * @author rcd (rcd AT users.sourceforge.net)
- * @since 2.7.1
+ * @since 2.7.3
  */
 public class TableDecoratorDataSet extends AbstractDataSet
 {
-
     private final IDataSet _dataSet;
     private final TableDecoratorFunction _decoratorFunction;
 
-    public TableDecoratorDataSet(IDataSet dataSet, TableDecoratorFunction decoratorFunction)
+    public TableDecoratorDataSet(final IDataSet dataSet,
+            final TableDecoratorFunction decoratorFunction)
     {
         _dataSet = dataSet;
         _decoratorFunction = decoratorFunction;
     }
 
     @Override
-    protected ITableIterator createIterator(boolean reversed) throws DataSetException
+    protected ITableIterator createIterator(final boolean reversed)
+            throws DataSetException
     {
-        return new FilterIterator(reversed ? _dataSet.reverseIterator() : _dataSet.iterator());
+        return new FilterIterator(
+                reversed ? _dataSet.reverseIterator() : _dataSet.iterator());
     }
 
-    private class FilterIterator implements ITableIterator {
-
+    private class FilterIterator implements ITableIterator
+    {
         private final ITableIterator _iterator;
 
-        public FilterIterator(ITableIterator _iterator)
+        public FilterIterator(final ITableIterator _iterator)
         {
             this._iterator = _iterator;
         }
@@ -75,13 +78,11 @@ public class TableDecoratorDataSet extends AbstractDataSet
         {
             return _decoratorFunction.apply(_iterator.getTable());
         }
-        
     }
-    
+
     @FunctionalInterface
     public interface TableDecoratorFunction
     {
         ITable apply(ITable table) throws DataSetException;
     }
-
 }

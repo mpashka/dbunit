@@ -25,19 +25,17 @@ import org.dbunit.dataset.Column;
 
 /**
  * Column filter that filters out generated columns.
- * 
+ *
  * @author rcd (rcd AT users.sourceforge.net)
- * @since 2.7.1
+ * @since 2.7.3
  */
 public class GeneratedColumnFilter implements IColumnFilter
 {
-
     @Override
-    public boolean accept(String tableName, Column column)
+    public boolean accept(final String tableName, final Column column)
     {
         // allow column if it is not generated or we don't know
-        Boolean isGenerated = column.getGeneratedColumn();
+        final Boolean isGenerated = column.getGeneratedColumn();
         return isGenerated == null || !isGenerated;
     }
-
 }

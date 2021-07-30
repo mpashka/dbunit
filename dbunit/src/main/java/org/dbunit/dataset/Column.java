@@ -223,7 +223,7 @@ public class Column
     
     /**
      * @return Whether the column is a generated column
-     * @since 2.7.1
+     * @since 2.7.3 
      */
     public Boolean getGeneratedColumn()
     {
