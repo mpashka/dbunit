@@ -42,8 +42,8 @@ derby-integration-test-job:
 h2-integration-test-job:
   stage: integration-test
   script:
-    - mvn $MAVEN_CLI_COMMON -Pit-config,h2 verify
-  artifacts:
+    - mvn $MAVEN_CLI_COMMON -Pit-config,h2 verify -Ddbunit.profile.url=jdbc:h2:dbunit-h2
+  artifacts: 
     when: always
     reports:
       junit:
