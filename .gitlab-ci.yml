@@ -62,17 +62,18 @@ hsqldb-integration-test-job:
 mssql41-integration-test-job:
   stage: integration-test
   services:
-    - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    # - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    - name: dbunit/dbunit-it-sqlserver:2.0.0
       alias: sqlserver
-  variables:
-    ACCEPT_EULA: "Y"
-    SA_PASSWORD: y0urStrongPassword
-    MSSQL_PID: Express
+  #variables:
+    #ACCEPT_EULA: "Y"
+    #SA_PASSWORD: y0urStrongPassword
+    #MSSQL_PID: Express
   script:
-    - curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-    - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list
-    - apt-get update && apt-get install -y mssql-tools unixodbc-dev
-    - /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P y0urStrongPassword -i dbunit-docker/sqlserver/mssql-setup.sql
+    # - curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+    # - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list
+    # - apt-get update && apt-get install -y mssql-tools unixodbc-dev
+    # - /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P y0urStrongPassword -i dbunit-docker/sqlserver/mssql-setup.sql
     - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.url=jdbc:sqlserver://sqlserver:1433;databaseName=dbunit;SelectMethod=cursor
   artifacts:
     when: always
