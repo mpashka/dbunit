@@ -69,7 +69,12 @@ mssql41-integration-test-job:
     SA_PASSWORD: y0urStrongPassword
     MSSQL_PID: Express
   script:
-    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.user=sa -Ddbunit.profile.password=y0urStrongPassword -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\master:1433;DatabaseName=master;SelectMethod=cursor
+    - curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+    - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+    - sudo apt-get update 
+    - sudo apt-get install mssql-tools unixodbc-dev
+    - sqlcmd -S sqlserver -U SA -P y0urStrongPassword -q "CREATE DATABASE dbunit"
+    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.user=sa -Ddbunit.profile.password=y0urStrongPassword -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\dbunit:1433;DatabaseName=dbunit;SelectMethod=cursor
   artifacts:
     when: always
     reports:
