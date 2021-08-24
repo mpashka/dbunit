@@ -73,7 +73,7 @@ mssql41-integration-test-job:
     - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list
     - apt-get update && apt-get install -y mssql-tools unixodbc-dev
     - /opt/mssql-tools/bin/sqlcmd -S sqlserver -U SA -P y0urStrongPassword -i dbunit-docker/sqlserver/mssql-setup.sql
-    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\dbunit:1433;DatabaseName=dbunit;SelectMethod=cursor
+    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.url=jdbc:sqlserver://sqlserver:1433;DatabaseName=dbunit;SelectMethod=cursor
   artifacts:
     when: always
     reports:
