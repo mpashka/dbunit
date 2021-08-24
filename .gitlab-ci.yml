@@ -62,15 +62,13 @@ hsqldb-integration-test-job:
 mssql41-integration-test-job:
   stage: integration-test
   services:
-    - name: dbunit/dbunit-it-sqlserver:2.0.0
+    - name: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
       alias: sqlserver
   variables:
-    DB_HOST: sqlserver
-    DB_DATABASE: dbunit
-    DB_USERNAME: dbunit
-    DB_PASSWORD: dbunit
+    ACCEPT_EULA: "Y"
+    SA_PASSWORD: yourStrong(!)Password
   script:
-    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\dbunit:1433;DatabaseName=dbunit;SelectMethod=cursor
+    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.user=sa -Ddbunit.profile.password=yourStrong(!)Password -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\master:1433;DatabaseName=master;SelectMethod=cursor
   artifacts:
     when: always
     reports:
