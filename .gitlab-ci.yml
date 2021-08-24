@@ -66,9 +66,9 @@ mssql41-integration-test-job:
       alias: sqlserver
   variables:
     ACCEPT_EULA: "Y"
-    SA_PASSWORD: yourStrong(!)Password
+    SA_PASSWORD: y0urStrongPassword
   script:
-    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.user=sa -Ddbunit.profile.password=yourStrong(!)Password -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\master:1433;DatabaseName=master;SelectMethod=cursor
+    - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.user=sa -Ddbunit.profile.password=y0urStrongPassword -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\master:1433;DatabaseName=master;SelectMethod=cursor
   artifacts:
     when: always
     reports:
