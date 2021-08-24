@@ -28,10 +28,15 @@ compile-job:
     - mvn $MAVEN_CLI_COMMON compile
 
 unit-test-job:
-  extends: .integration-base
   stage: unit-test
   script:
     - mvn $MAVEN_CLI_COMMON test
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
 
 derby-integration-test-job:
   extends: .integration-base
