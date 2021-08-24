@@ -62,11 +62,12 @@ hsqldb-integration-test-job:
 mssql41-integration-test-job:
   stage: integration-test
   services:
-    - name: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
+    - name: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
       alias: sqlserver
   variables:
     ACCEPT_EULA: "Y"
     SA_PASSWORD: y0urStrongPassword
+    MSSQL_PID: Express
   script:
     - mvn $MAVEN_CLI_COMMON -Pit-config,mssql41 verify -Ddbunit.profile.user=sa -Ddbunit.profile.password=y0urStrongPassword -Ddbunit.profile.url=jdbc:sqlserver://sqlserver\\master:1433;DatabaseName=master;SelectMethod=cursor
   artifacts:
@@ -102,6 +103,7 @@ oracle-ojdbc8-integration-test-job:
   variables:
     TZ: "America/Chicago"
   script:
+    - sleep 1m
     - mvn $MAVEN_CLI_COMMON -Pit-config,oracle-ojdbc8 verify -Ddbunit.profile.url=jdbc:oracle:thin:@oracle11gJdbc8:1521:XE
   artifacts:
     when: always
